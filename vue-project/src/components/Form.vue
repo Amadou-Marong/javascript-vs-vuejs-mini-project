@@ -1,0 +1,101 @@
+<script>
+    export default {
+        props: {
+            goals: {
+                type: Array,
+                required: true
+            },
+            enteredValue: {
+                type: String,
+                required: true
+            },
+            addGoal: {
+                type: Function,
+                required: true
+            }
+        },
+        data() {
+            return {
+                goals: [],
+                enteredValue: ''
+            };
+        },
+        methods: {
+            addGoal() {
+                this.goals.push(this.enteredValue);
+                this.enteredValue = '';
+            }
+        },
+    };
+
+</script>
+<template>
+    <div class="container">
+        <div>
+            <label for="goal">Goal</label>
+            <input type="text" v-model="enteredValue">
+            <button v-on:click="addGoal">Add Goal</button>
+        </div>
+        <ul>
+            <li v-for="(goal, index) in goals" :key="index">{{ goal }}</li>
+        </ul>
+    </div>
+    
+</template>
+
+<style scoped>
+
+*{
+    box-sizing: border-box;
+}
+
+html{
+    font-family: sans-serif;
+}
+
+body{
+    margin: 0;
+}
+
+.container{
+    margin: 3rem auto;
+    max-width: 40rem;
+    padding: 1rem;
+    box-sizing: 0 2px 8px rgba(0, 0, 0, 0.26);
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 5px;
+}
+
+label, input{
+    margin-bottom: 0.5rem;
+    display: block;
+    width: 100%;
+}
+input{
+    font: inherit;
+    padding: 0.25rem;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+}
+
+label{
+    font-weight: bold;
+}
+
+ul{
+    list-style: none;
+    margin: 1rem 0;
+    padding: 0;
+}
+
+ul li{
+    padding: 1rem;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+}
+
+</style>
